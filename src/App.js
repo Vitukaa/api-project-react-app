@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Link, Route, Router, Routes } from 'react-router-dom';
+import JsonApi from './pages/JsonApi';
+import UserPage from './pages/UserPage';
+import UsersPage from './pages/UsersPage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={
+          <ul>
+            <li>
+            <Link to='/main-page' element={<JsonApi />}>Main page</Link>
+            </li>
+            <li>
+            <Link to='/users' element={<UsersPage />}>Users</Link>
+            </li>
+          </ul>
+        }>
+        </Route>
+        <Route path='/main-page' element={<JsonApi />}></Route>
+        <Route path='/users' element={<UsersPage />}></Route>
+        <Route path='/users/:userId' element={<UserPage />}></Route>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

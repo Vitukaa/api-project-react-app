@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path='/' element={
+        <Route path='api-project-react-app/' element={
           <ul>
             <li>
             <Link to='/main-page' element={<JsonApi />}>Main page</Link>
@@ -19,7 +19,7 @@ function App() {
           </ul>
         }>
         </Route>
-        <Route path='/main-page' element={<JsonApi />}></Route>
+        <Route path='api-project-react-app//main-page' element={<JsonApi />}></Route>
         <Route path='/users' element={<UsersPage />}></Route>
         <Route path='/users/:userId' element={<UserPage />}></Route>
       </Routes>

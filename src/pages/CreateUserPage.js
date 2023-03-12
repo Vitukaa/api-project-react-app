@@ -7,9 +7,15 @@ export default function CreateUserPage() {
         description: '',
         email: '',
         phone: '',
-        address: '',
+        address: {
+            suite: '',
+            street: '',
+            city: '',
+            },
         website: '',
-        company: '',
+        company: {
+            name: '',
+        },
     }
 
   const [formData, setFormData] = useState(defaultFormData)
@@ -101,8 +107,13 @@ export default function CreateUserPage() {
             <input type='tel' name='phone' value={formData.phone} onChange={formInputHandler}></input>
         </div>
         <div className='form-control'>
-            <label htmlFor='address'>*Address:</label>
-            <input type='text' name='address' value={formData.address} onChange={formInputHandler}></input>
+            <div>*Address:</div>
+            <label htmlFor='suite'></label>
+            <input type='text' name='suite' value={formData.address.suite} onChange={formInputHandler}></input>
+            <label htmlFor='street'></label>
+            <input type='text' name='street' value={formData.address.street} onChange={formInputHandler}></input>
+            <label htmlFor='city'></label>
+            <input type='text' name='city' value={formData.address.city} onChange={formInputHandler}></input>
         </div>
         <div className='form-control'>
             <label htmlFor='website'>Website:</label>
@@ -110,7 +121,7 @@ export default function CreateUserPage() {
         </div>
         <div className='form-control'>
             <label htmlFor='company'>Company:</label>
-            <input type='text' name='company' value={formData.company} onChange={formInputHandler}></input>
+            <input type='text' name='company' value={formData.company.name} onChange={formInputHandler}></input>
         </div>
             
         <input type='submit' value='Create new user'></input>

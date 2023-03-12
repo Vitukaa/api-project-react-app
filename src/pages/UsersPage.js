@@ -10,7 +10,6 @@ export default function UsersPage() {
         fetch(`http://localhost:3000/users/`)
             .then(res => res.json())
             .then(usersData => {
-                console.log(usersData)
                 setUsers(usersData)
             })
     }, [])
@@ -24,16 +23,15 @@ export default function UsersPage() {
     }
 
 
-        useEffect(() => {
-            fetch(`http://localhost:3000/users/`)
-                .then(res => res.json())
-                .then(usersData => {
-                    console.log(usersData)
-                    setUsers(usersData)
-                })
+    useEffect(() => {
+        fetch(`http://localhost:3000/users/`)
+            .then(res => res.json())
+            .then(usersData => {
+                setUsers(usersData)
+            })
 
-                setUserWasDeleted(false)
-        }, [userWasDeleted])
+            setUserWasDeleted(false)
+    }, [userWasDeleted])
 
 
 

@@ -1,12 +1,15 @@
+import { click } from '@testing-library/user-event/dist/click'
 import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function UserPage() {
     const { userId } = useParams()
+    const navigate = useNavigate()
 
     const [user, setUser] = useState('')
     const [isDeleted, setIsDeleted] = useState(false)
     
+
     useEffect(() => {
         fetch(`http://localhost:3000/users/${userId}`)
             .then(res => res.json())
@@ -16,6 +19,7 @@ export default function UserPage() {
             })
     }, [])
 
+
     const deleteUserHandler = () => {
         fetch(`http://localhost:3000/users/${userId}`, {
             method: 'DELETE',
@@ -23,12 +27,12 @@ export default function UserPage() {
 
         setIsDeleted(true)
     }
-    
-    console.log(user)
 
-    if (user.address) {
-        const userAddressLink = `http://maps.google.com/?q=${user.address.street},${user.address.suite},${user.address.city}`
+
+    const redirectToEditUserPage = () => {
+        navigate(`./edit`)
     }
+
 
   return (
     <div>
@@ -37,6 +41,7 @@ export default function UserPage() {
             {!isDeleted ? (
                 <>
                     <button className='delete-button' onClick={deleteUserHandler}>Delete user</button>
+                    <button className='edit-button' onClick={redirectToEditUserPage}>Edit user</button>
                     <h1>{user.name} ({user.username})</h1>
                     <h3>About me:</h3>
                     <p>{user.description}</p>

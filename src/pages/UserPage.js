@@ -14,7 +14,6 @@ export default function UserPage() {
         fetch(`http://localhost:3000/users/${userId}`)
             .then(res => res.json())
             .then(userData => {
-                console.log(userData)
                 setUser(userData)
             })
     }, [])

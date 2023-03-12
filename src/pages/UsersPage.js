@@ -35,40 +35,6 @@ export default function UsersPage() {
 
 
 
-
-
-    const partUpdateHandler = () => {
-        fetch(`http://localhost:3000/users/12`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                name: 'bbb',
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
-    }
-
-    const wholeUpdateHandler = () => {
-        fetch(`http://localhost:3000/users/12`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                id: 12,
-                name: 'naujas vardas',
-                username: 'slapyvardis',
-                email: 'mail@mail.mail',
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
-    }
-
-
   return (
     <div>
         <h1>Users page</h1>

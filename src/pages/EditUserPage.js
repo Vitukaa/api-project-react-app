@@ -37,9 +37,10 @@ export default function EditUserPage() {
         if (!formData.email) {
             messages.push('Email is required')
         }
-        if (!formData.address) {
+        if (!formData.address.suite || !formData.address.street || !formData.address.city) {
             messages.push('Address is required')
         }
+
 
         if (messages.length === 0) {
             return true

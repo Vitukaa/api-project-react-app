@@ -4,6 +4,7 @@ import './UsersPage.css'
 
 export default function UsersPage() {
     const [users, setUsers] = useState([])
+    const [userWasDeleted, setUserWasDeleted] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:3000/users/`)
@@ -14,12 +15,29 @@ export default function UsersPage() {
             })
     }, [])
 
-
-    const deleteUserHandler = () => {
-        fetch(`http://localhost:3000/users/13`, {
+    const deleteUserHandler = (userId) => {
+        fetch(`http://localhost:3000/users/${userId}`, {
             method: 'DELETE',
         });
+        
+        setUserWasDeleted(true)
     }
+
+
+        useEffect(() => {
+            fetch(`http://localhost:3000/users/`)
+                .then(res => res.json())
+                .then(usersData => {
+                    console.log(usersData)
+                    setUsers(usersData)
+                })
+
+                setUserWasDeleted(false)
+        }, [userWasDeleted])
+
+
+
+
 
     const partUpdateHandler = () => {
         fetch(`http://localhost:3000/users/12`, {
@@ -52,6 +70,7 @@ export default function UsersPage() {
             .then((json) => console.log(json));
     }
 
+
   return (
     <div>
         <h1>Users page</h1>
@@ -60,16 +79,20 @@ export default function UsersPage() {
         {/* <button onClick={partUpdateHandler}>Edit user (part)</button>
         <button onClick={wholeUpdateHandler}>Whole user update</button>
          */}
-        <ul>
-            {users.map((user, index) => (
-                <li key={index}>
-                    <Link to={'/users/' + user.id}>
-                        {user.name}
-                    </Link>
-                    <button onClick={deleteUserHandler}>Delete user</button>
-                </li>
-            ))}
-        </ul>
+         {users && users.length > 0 ? (
+            <ul>
+                {users.map((user, index) => (
+                    <li key={index}>
+                        <Link to={'/users/' + user.id}>
+                            {user.name}
+                        </Link>
+                        <button onClick={() => deleteUserHandler(user.id)}>Delete user</button>
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <p>No users yet...</p>
+        )}
     </div>
   )
 }

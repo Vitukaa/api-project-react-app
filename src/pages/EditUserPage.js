@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function EditUserPage() {
     const { userId } = useParams()
@@ -129,7 +129,10 @@ export default function EditUserPage() {
         )}
 
       {userEdited ? (
+        <>
           <h2>User ({formData.name}) was edited!</h2>
+          <Link to={'/users'}>Go to all users</Link>
+        </>
       ) : (
           <p>{errorMessages}</p>
       )}

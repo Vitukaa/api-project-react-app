@@ -1,6 +1,6 @@
 import { click } from '@testing-library/user-event/dist/click'
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 export default function UserPage() {
     const { userId } = useParams()
@@ -64,7 +64,10 @@ export default function UserPage() {
                     </ul>
                 </>
             ) : (
-                <p>User ({user.name}) deleted successfully</p>
+                <>
+                    <p>User ({user.name}) deleted successfully</p>
+                    <Link to={'/users'}>Go to all users</Link>
+                </>
             )}
         </div>
         }

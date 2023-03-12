@@ -109,11 +109,11 @@ export default function EditUserPage() {
                 <div className='form-control'>
                     <div>*Address:</div>
                     <label htmlFor='suite'>Suite:</label>
-                    <input type='text' name='suite' value={formData.address.suite} onChange={formInputHandler}></input>
+                    <input type='text' name='suite' value={formData.address.suite} onChange={(event) => formInputHandler( event, 'address')}></input>
                     <label htmlFor='street'>Street:</label>
-                    <input type='text' name='street' value={formData.address.street} onChange={formInputHandler}></input>
+                    <input type='text' name='street' value={formData.address.street} onChange={(event) => formInputHandler( event, 'address')}></input>
                     <label htmlFor='city'>City:</label>
-                    <input type='text' name='city' value={formData.address.city} onChange={formInputHandler}></input>
+                    <input type='text' name='city' value={formData.address.city} onChange={(event) => formInputHandler( event, 'address')}></input>
                 </div>
                 <div className='form-control'>
                     <label htmlFor='website'>Website:</label>
@@ -121,10 +121,10 @@ export default function EditUserPage() {
                 </div>
                 <div className='form-control'>
                     <label htmlFor='company'>Company:</label>
-                    <input type='text' name='company' value={formData.company.name} onChange={formInputHandler}></input>
+                    <input type='text' name='company' value={formData.company.name} onChange={(event) => formInputHandler( event, 'company')}></input>
                 </div>
                     
-                <input type='submit' value='Edit user'></input>
+                <input className='button' type='submit' value='Edit user'></input>
             </form>
         )}
 

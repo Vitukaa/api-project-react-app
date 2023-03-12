@@ -1,6 +1,7 @@
 import { click } from '@testing-library/user-event/dist/click'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import Button from './components/Button'
 
 export default function UserPage() {
     const { userId } = useParams()
@@ -39,8 +40,8 @@ export default function UserPage() {
         <div>
             {!isDeleted ? (
                 <>
-                    <button className='delete-button' onClick={deleteUserHandler}>Delete user</button>
-                    <button className='edit-button' onClick={redirectToEditUserPage}>Edit user</button>
+                    <Button buttonClass='delete-button' handler={deleteUserHandler} buttonText='Delete user'/>
+                    <Button buttonClass='edit-button' handler={redirectToEditUserPage} buttonText='Edit user'/>
                     <h1>{user.name} ({user.username})</h1>
                     <h3>About me:</h3>
                     <p>{user.description}</p>

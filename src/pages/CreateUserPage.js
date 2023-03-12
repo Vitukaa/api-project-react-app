@@ -139,7 +139,7 @@ export default function CreateUserPage() {
                     <input type='text' name='company' value={formData.company.name} onChange={(event) => formInputHandler( event, 'company')}></input>
                 </div>
                     
-                <input type='submit' value='Create new user'></input>
+                <input className='button' type='submit' value='Create new user'></input>
             </form>
         )}
         {userCreated ? (

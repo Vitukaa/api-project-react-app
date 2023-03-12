@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import Button from './components/Button'
 import './UsersPage.css'
 
 export default function UsersPage() {
@@ -50,7 +51,7 @@ export default function UsersPage() {
                         <Link to={'/users/' + user.id}>
                             {user.name}
                         </Link>
-                        <button onClick={() => deleteUserHandler(user.id)}>Delete user</button>
+                        <Button buttonClass='delete-button' handler={() => deleteUserHandler(user.id)} buttonText='Delete user'/>
                     </li>
                 ))}
             </ul>

@@ -22,7 +22,11 @@ export default function PetsPage() {
             {pets && (
                 pets.map((pet, index) => (
                     <div key={index}>
-                        <h2>{pet.name}</h2>
+                        <h2>
+                            <Link to={'/pets/' + pet.id}>
+                                {pet.name}
+                            </Link>
+                        </h2>
                         <ul>
                             <li>Age: {pet.age}</li>
                             <li>Owner name: {pet.user.name}</li>

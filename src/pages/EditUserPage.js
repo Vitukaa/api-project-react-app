@@ -17,7 +17,7 @@ export default function EditUserPage() {
             .then(userData => {
                 setUser(userData)
                 setFormData(userData)
-                
+                console.log(user)
             })
     }, [])
 
@@ -50,10 +50,16 @@ export default function EditUserPage() {
         }
     }
 
-    const formInputHandler = (event) => {
+    const formInputHandler = (event, property) => {
         setFormData(prevState => {
             const newData = {...prevState}
-            newData[event.target.name] = event.target.value
+
+            if (!property) {
+                newData[event.target.name] = event.target.value
+            } else {
+                newData[property][event.target.name] = event.target.value
+            }
+            
             return newData
         })
     }

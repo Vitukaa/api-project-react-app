@@ -76,7 +76,7 @@ export default function EditPetPage() {
                     </div>
                     <div className='form-control'>
                         <label htmlFor='species'>Species:</label>
-                        <select name='species' onChange={formInputHandler} value={pet.species}>
+                        <select name='species' onChange={formInputHandler} defaultValue={pet.species}>
                             {speciesArr.map((species, index) => <option key={index} value={species}>{species}</option>)}
                         </select>
                     </div>
@@ -90,7 +90,7 @@ export default function EditPetPage() {
                     </div>
                     <div className='form-control'>
                         <label htmlFor='userId'>Owner name:</label>
-                        <select name='userId' onChange={formInputHandler} value={pet.userId}>
+                        <select name='userId' onChange={formInputHandler} defaultValue={pet.userId}>
                             {users.map((owner, index) => <option key={index} value={owner.id}>{owner.name}</option>)}
                         </select>
                     </div>

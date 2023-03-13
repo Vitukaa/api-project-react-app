@@ -91,11 +91,6 @@ export default function CreateUserPage() {
         setUserCreated(true)
     }
 
-    if (userCreated === true) {
-        setFormData(defaultFormData)
-
-    }
-
 
   return (
     <div>

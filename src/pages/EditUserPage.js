@@ -3,9 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 
 export default function EditUserPage() {
     const { userId } = useParams()
+    
     const [user, setUser] = useState('')
-
-
     const [formData, setFormData] = useState({})
     const [userEdited, setUserEdited] = useState(false)
     const [errorMessages, setErrorMessages] = useState([])

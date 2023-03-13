@@ -4101,12 +4101,6 @@
       "name": "ex eaque eum natus",
       "email": "Emma@joanny.ca",
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
-    },
-    {
-      "title": "asa",
-      "body": "asas",
-      "author": "aa@rr.lr",
-      "id": 501
     }
   ],
   "users": [
@@ -4374,57 +4368,6 @@
         "name": ""
       },
       "id": 12
-    },
-    {
-      "name": "jkljk",
-      "username": "jkljkl",
-      "description": "jkljkl",
-      "email": "a@a.asssss",
-      "phone": "",
-      "address": {
-        "suite": "ll",
-        "street": "lll",
-        "city": "ll"
-      },
-      "website": "",
-      "company": {
-        "name": ""
-      },
-      "id": 13
-    },
-    {
-      "name": "Vardas 5",
-      "username": "ggg",
-      "description": "gggg",
-      "email": "a@a.asssss",
-      "phone": "",
-      "address": {
-        "suite": "gg",
-        "street": "gg",
-        "city": "gg"
-      },
-      "website": "",
-      "company": {
-        "name": ""
-      },
-      "id": 14
-    },
-    {
-      "name": "cdcc",
-      "username": "ccc",
-      "description": "cc",
-      "email": "a@a.asssss",
-      "phone": "",
-      "address": {
-        "suite": "cc",
-        "street": "cc",
-        "city": "c"
-      },
-      "website": "",
-      "company": {
-        "name": ""
-      },
-      "id": 15
     }
   ],
   "pets": [
@@ -4569,14 +4512,6 @@
           "bs": "synergize scalable supply-chains"
         }
       }
-    },
-    {
-      "name": "Vardas 5",
-      "species": "cat",
-      "age": "0",
-      "image": "https://images.unsplash.com/photo-1491604612772-6853927639ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-      "userId": 1,
-      "id": 16
     }
   ]
 }

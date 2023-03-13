@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
 
 export default function EditPostPage() {
     const { postId } = useParams()
@@ -83,9 +85,10 @@ export default function EditPostPage() {
 
 
   return (
-    <div>
+    <PageWrapper>
+        <Container>
             {post && !postEdited && (
-                <form onSubmit={editedPostHandler}>
+                <form className='form' onSubmit={editedPostHandler}>
                     <div className='form-control'>
                         <label htmlFor='title'>*Title:</label>
                         <input type='text' name='title' value={formData.title} onChange={formInputHandler}></input>
@@ -102,17 +105,18 @@ export default function EditPostPage() {
                             ))}
                         </select>
                     </div>
-                    <input type='submit' value='Edit post'></input>
+                    <input className='button' type='submit' value='Edit post'></input>
                 </form>
             )}
             {postEdited ? (
                 <>
                 <h1>Post was edited!</h1>
-                <Link to={'/posts'}>Go to all posts</Link>
+                <Link className='link' to={'/posts'}>Go to all posts</Link>
                 </>
             ) : (
                 <p>{errorMessages}</p>
             )}
-    </div>
+        </Container>
+    </PageWrapper>
   )
 }

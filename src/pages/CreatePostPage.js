@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
+import './styles/Form.scss'
 
 export default function CreatePostPage() {
 
@@ -76,36 +79,38 @@ export default function CreatePostPage() {
 
 
     return (
-        <div>
-            {!postCreated && (
-                <form onSubmit={newPostHandler}>
-                    <div className='form-control'>
-                        <label htmlFor='title'>*Title:</label>
-                        <input type='text' name='title' value={formData.title} onChange={formInputHandler}></input>
-                    </div>
-                    <div className='form-control'>
-                        <label htmlFor='body'>*Body:</label>
-                        <textarea name='body' rows='20' cols='100' value={formData.body} onChange={formInputHandler}></textarea>
-                    </div>
-                    <div className='form-control'>
-                        <label htmlFor='userId'>*Author:</label>
-                        <select name='userId' value={formData.userId} onChange={formInputHandler}>
-                            {users.map((user, index) => (
-                                <option key={index} value={user.id}>{user.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <input type='submit' value='Create new post'></input>
-                </form>
-            )}
-            {postCreated ? (
-                <>
-                <h1>New post was created!</h1>
-                <Link to={'/posts'}>Go to all posts</Link>
-                </>
-            ) : (
-                <p>{errorMessages}</p>
-            )}
-        </div>
+        <PageWrapper>
+            <Container>
+                {!postCreated && (
+                    <form className='form' onSubmit={newPostHandler}>
+                        <div className='form-control'>
+                            <label htmlFor='title'>*Title:</label>
+                            <input type='text' name='title' value={formData.title} onChange={formInputHandler}></input>
+                        </div>
+                        <div className='form-control'>
+                            <label htmlFor='body'>*Body:</label>
+                            <textarea name='body' rows='15' cols='80' value={formData.body} onChange={formInputHandler}></textarea>
+                        </div>
+                        <div className='form-control'>
+                            <label htmlFor='userId'>*Author:</label>
+                            <select name='userId' value={formData.userId} onChange={formInputHandler}>
+                                {users.map((user, index) => (
+                                    <option key={index} value={user.id}>{user.name}</option>
+                                    ))}
+                            </select>
+                        </div>
+                        <input className='button' type='submit' value='Create new post'></input>
+                    </form>
+                )}
+                {postCreated ? (
+                    <>
+                    <h1>New post was created!</h1>
+                    <Link className='link' to={'/posts'}>Go to all posts</Link>
+                    </>
+                ) : (
+                    <p>{errorMessages}</p>
+                    )}
+            </Container>
+        </PageWrapper>
     )
 }

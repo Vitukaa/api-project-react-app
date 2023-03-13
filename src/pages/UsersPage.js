@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from './components/Button'
-import './UsersPage.css'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
+import './styles/UsersPage.scss'
 
 export default function UsersPage() {
     const [users, setUsers] = useState([])
@@ -37,27 +39,25 @@ export default function UsersPage() {
 
 
   return (
-    <div>
-        <h1>Users page</h1>
-        <Link to='/users/new'>Create new user</Link>
-        
-        {/* <button onClick={partUpdateHandler}>Edit user (part)</button>
-        <button onClick={wholeUpdateHandler}>Whole user update</button>
-         */}
-         {users && users.length > 0 ? (
-            <ul>
-                {users.map((user, index) => (
-                    <li key={index}>
-                        <Link to={'/users/' + user.id}>
-                            {user.name}
-                        </Link>
-                        <Button buttonClass='delete-button' handler={() => deleteUserHandler(user.id)} buttonText='Delete user'/>
-                    </li>
-                ))}
-            </ul>
-        ) : (
-            <p>No users yet...</p>
-        )}
-    </div>
+    <PageWrapper>
+        <Container>
+            <h1>Users page</h1>
+            <Link className='link' to='/users/new'>Create new user</Link>
+            {users && users.length > 0 ? (
+                <ul className='users-list'>
+                    {users.map((user, index) => (
+                        <li className='user-item' key={index}>
+                            <Link to={'/users/' + user.id}>
+                                {user.name}
+                            </Link>
+                            <Button buttonClass='delete' handler={() => deleteUserHandler(user.id)} buttonText='Delete user'/>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No users yet...</p>
+            )}
+        </Container>
+    </PageWrapper>
   )
 }

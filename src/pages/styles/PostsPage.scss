@@ -1,0 +1,24 @@
+.post-wrapper {
+    margin: 30px 0;
+
+        a {
+            text-decoration: none;
+            color: black;
+
+            .post-title {
+                margin: 10px 0;
+            }
+    
+            .post-author {
+                margin-bottom: 10px;
+                padding-left: 20px;
+                color: rgb(87, 68, 105);
+            }
+    
+            .post-body {
+                padding-left: 20px;
+                color: rgb(87, 68, 105);
+            }
+        }
+
+}

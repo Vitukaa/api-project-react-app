@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './PetsPage.css'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
+import './styles/PetsPage.scss'
 
 export default function PetsPage() {
     const [pets, setPets] = useState([])
@@ -16,26 +18,23 @@ export default function PetsPage() {
     console.log(pets)
 
     return (
-        <div>
-            <h1>Pets page</h1>
-            <Link to='/pets/new'>Create new pet</Link>
-            {pets && (
-                pets.map((pet, index) => (
-                    <div key={index}>
-                        <h2>
-                            <Link to={'/pets/' + pet.id}>
-                                {pet.name}
-                            </Link>
-                        </h2>
-                        <ul>
-                            <li>Age: {pet.age}</li>
-                            <li>Owner name: {pet.user.name}</li>
-                        </ul>
-                        <img src={`${pet.image}`} alt={pet.species}></img>
-                    </div>
-                ))
-
-            )}
-        </div>
+        <PageWrapper>
+            <Container>
+                <h1>Pets page</h1>
+                <Link className='link' to='/pets/new'>Create new pet</Link>
+                <div className='pets-wrapper'>
+                    {pets && (
+                        pets.map((pet, index) => (
+                            <div className='pet-wrapper' key={index}>
+                                <Link className='image-link' to={'/pets/' + pet.id}>
+                                    <h2>{pet.name}</h2>
+                                    <img src={`${pet.image}`} alt={pet.species}></img>
+                                </Link>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </Container>
+        </PageWrapper>
     )
 }

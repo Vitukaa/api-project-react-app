@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './PetsPage.css'
 
 export default function PetsPage() {
@@ -17,6 +18,7 @@ export default function PetsPage() {
     return (
         <div>
             <h1>Pets page</h1>
+            <Link to='/pets/new'>Create new pet</Link>
             {pets && (
                 pets.map((pet, index) => (
                     <div key={index}>

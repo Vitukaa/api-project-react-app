@@ -17,18 +17,18 @@ export default function PostsPage() {
 
     return (
         <div>
+            <Link to='/posts/new'>Create new post</Link>
             {posts && (
                 <>
-                {posts.map((post, index) => (
-                    <div className='post-wrapper' key={index}>
-                        <Link to={'/posts/' + post.id}>
-                            <h2 >{post.title}</h2>
-                            <h3>Author: {post.user.name}</h3>
-                            <p>{post.body.slice(0, 150) + '......'}</p>
-                        </Link>
-                    </div>
-                ))}
-
+                    {posts.map((post, index) => (
+                        <div className='post-wrapper' key={index}>
+                            <Link to={'/posts/' + post.id}>
+                                <h2 >{post.title}</h2>
+                                <h3>Author: {post.user.name}</h3>
+                                <p>{post.body.slice(0, 150) + '......'}</p>
+                            </Link>
+                        </div>
+                    ))}
                 </>
             )}
         </div>

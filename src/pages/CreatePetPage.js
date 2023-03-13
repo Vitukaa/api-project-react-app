@@ -1,0 +1,140 @@
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import Button from './components/Button'
+
+export default function CreatePetPage() {
+    const speciesArr = ['cat', 'dog', 'rabbit', 'parrot', 'other']
+
+    const defaultInputsValues = {
+        name: '',
+        species: 'cat',
+        age: '0',
+        image: '',
+        userId: 1,
+    }
+
+    const [formData, setFormData] = useState(defaultInputsValues)
+    const [users, setUsers] = useState([])
+    const [errorMessages, setErrorMessages] = useState([])
+    const [petCreated, setPetCreated] = useState(false)
+
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/users/`)
+            .then(res => res.json())
+            .then(usersData => {
+                setUsers(usersData)
+            });
+    }, [])
+
+
+    const formInputHandler = (event) => {
+        setFormData(prevState => {
+            const newData = {...prevState}
+            console.log(newData)
+            newData[event.target.name] = event.target.value
+            return newData
+        })
+    }
+
+
+    const validateForm = () => {
+        let messages = []
+
+        if(!formData.name) {
+            messages.push('Name is required')
+        }
+        if(!formData.species) {
+            messages.push('Species is required')
+        }
+        if(!formData.age) {
+            messages.push('Age is required')
+        }
+        if(!formData.image) {
+            messages.push('Image url is required')
+        }
+        if(!formData.userId) {
+            messages.push('Owner is required')
+        }
+
+        if (messages.length === 0) {
+            return true
+        } else {
+            setErrorMessages(messages.reduce((str, current) => str + '; ' + current))
+            return false
+        }
+    }
+
+
+    const newPetHandler = (event) => {
+        event.preventDefault()
+
+        if (!validateForm()) {
+            return
+        }
+
+        fetch(`http://localhost:3000/pets/`, {
+        method: 'POST',
+        body: JSON.stringify(
+            {...formData}
+            ),
+            headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+        setPetCreated(true)
+    }
+
+
+    const createAnotherPet = () => {
+        setFormData(defaultInputsValues)
+        setPetCreated(false)
+    }
+
+
+    return (
+        <div>
+            {!petCreated && (
+                <form onSubmit={newPetHandler}>
+                    <div className='form-control'>
+                        <label htmlFor='name'>Name:</label>
+                        <input type='text' name='name' value={formData.name} onChange={formInputHandler}></input>
+                    </div>
+                    <div className='form-control'>
+                        <label htmlFor='species'>Species:</label>
+                        <select name='species' onChange={formInputHandler}>
+                            {speciesArr.map((species, index) => <option key={index} value={species}>{species}</option>)}
+                        </select>
+                    </div>
+                    <div className='form-control'>
+                        <label htmlFor='age'>Age:</label>
+                        <input type='number' name='age' value={formData.age} onChange={formInputHandler}></input>
+                    </div>
+                    <div className='form-control'>
+                        <label htmlFor='image'>Image url:</label>
+                        <input type='text' name='image' value={formData.image} onChange={formInputHandler}></input>
+                    </div>
+                    <div className='form-control'>
+                        <label htmlFor='userId'>Owner name:</label>
+                        <select name='userId' onChange={formInputHandler}>
+                            {users.map((owner, index) => <option key={index} value={owner.id}>{owner.name}</option>)}
+                        </select>
+                    </div>
+                    <input type='submit' value='Create new pet'></input>
+                </form>
+            )}
+            {petCreated ? (
+                <>
+                    <h2>New pet ({formData.name}) was created!</h2>
+                    <Link to={'/pets'}>Go to all pets</Link>
+                    <Button buttonClass='create-pet' handler={createAnotherPet} buttonText='Create another pet' />
+                </>
+            ) : (
+                <p>{errorMessages}</p>
+            )}
+        </div>
+    )
+}

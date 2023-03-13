@@ -1,0 +1,67 @@
+.main-title {
+    text-align: center;
+    margin: 100px 0;
+}
+
+.top-wrapper {
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap:50px;
+
+    .user-card {
+        width: calc((100% - 100px) /3);
+        border: dashed 2px;
+        padding: 20px;
+
+        a {
+            text-decoration: none;
+            color: black;
+            
+            .user-title {
+                font-size: 26px;
+                text-align: center;
+            }
+            .user-username{
+                font-size: 18px;
+                padding: 20px 0;
+            }
+
+        }
+        .pets-wrapper {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap:20px;
+
+            
+            a {
+                width: calc((100% - 20px) / 2);
+                text-decoration: none;
+                color: rgb(87, 68, 105);
+                
+                &:only-child {
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .pet-wrapper {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+
+                    h3 {
+                        font-size: 24px;
+                    }
+
+                    img {
+                        height: 200px;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+            }
+        }
+    }
+}

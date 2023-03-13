@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './components/Button'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
+import './styles/Form.scss'
 
 export default function CreatePetPage() {
     const speciesArr = ['cat', 'dog', 'rabbit', 'parrot', 'other']
@@ -96,9 +99,10 @@ export default function CreatePetPage() {
 
 
     return (
-        <div>
+        <PageWrapper>
+        <Container>
             {!petCreated && (
-                <form onSubmit={newPetHandler}>
+                <form className='create-pet form' onSubmit={newPetHandler}>
                     <div className='form-control'>
                         <label htmlFor='name'>Name:</label>
                         <input type='text' name='name' value={formData.name} onChange={formInputHandler}></input>
@@ -106,12 +110,12 @@ export default function CreatePetPage() {
                     <div className='form-control'>
                         <label htmlFor='species'>Species:</label>
                         <select name='species' onChange={formInputHandler}>
-                            {speciesArr.map((species, index) => <option key={index} value={species}>{species}</option>)}
+                            {speciesArr.map((species, index) => <option key={index} value={species}>{species[0].toUpperCase() + species.slice(1)}</option>)}
                         </select>
                     </div>
                     <div className='form-control'>
                         <label htmlFor='age'>Age:</label>
-                        <input type='number' name='age' value={formData.age} onChange={formInputHandler}></input>
+                        <input type='number' name='age' min='0' max='25' value={formData.age} onChange={formInputHandler}></input>
                     </div>
                     <div className='form-control'>
                         <label htmlFor='image'>Image url:</label>
@@ -123,18 +127,19 @@ export default function CreatePetPage() {
                             {users.map((owner, index) => <option key={index} value={owner.id}>{owner.name}</option>)}
                         </select>
                     </div>
-                    <input type='submit' value='Create new pet'></input>
+                    <input className='button' type='submit' value='Create new pet'></input>
                 </form>
             )}
             {petCreated ? (
                 <>
-                    <h2>New pet ({formData.name}) was created!</h2>
-                    <Link to={'/pets'}>Go to all pets</Link>
+                    <h1>New pet ({formData.name}) was created!</h1>
                     <Button buttonClass='create-pet' handler={createAnotherPet} buttonText='Create another pet' />
+                    <Link className='link' to={'/pets'}>Go to all pets</Link>
                 </>
             ) : (
                 <p>{errorMessages}</p>
             )}
-        </div>
+        </Container>
+        </PageWrapper>
     )
 }

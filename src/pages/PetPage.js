@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Button from './components/Button'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
+import './styles/PetPage.scss'
 
 export default function PetPage() {
     const { petId } = useParams()
@@ -34,30 +37,31 @@ export default function PetPage() {
 
 
   return (
-    <div>
+    <PageWrapper>
         {pet && (
-            <>
+            <Container>
                 {!isDeleted ? (
                     <>
                         <Button buttonClass='delete-button' handler={deletePetHandler} buttonText='Delete pet'/>
                         <Button buttonClass='edit-button' handler={redirectToEditPetPage} buttonText='Edit pet'/>
-                        <h1>{pet.name}</h1>
-                        <h2>Owner: {pet.user.name}</h2>
-                        <ul>
-                            <li>Age: {pet.age}</li>
+                        <h1 className='title'>{pet.name}</h1>
+                        <h2 className='subtitle'>Owner: {pet.user.name}</h2>
+                        <h3 className='list-title'>Additional info:</h3>
+                        <ul className='info-list'>
+                            <li className='info-item'>Age: {pet.age}</li>
                         </ul>
-                        <div>
+                        <div className='image-wrapper'>
                             <img src={pet.image}></img>
                         </div>
                     </>
                 ) : (
                     <>
-                        <p>Pet ({pet.name}) deleted successfully</p>
-                        <Link to={'/pets'}>Go to all pets</Link>
+                        <h1>Pet ({pet.name}) deleted successfully</h1>
+                        <Link className='link' to={'/pets'}>Go to all pets</Link>
                     </>
                 )}
-            </>
+            </Container>
         )}
-    </div>
+    </PageWrapper>
   )
 }

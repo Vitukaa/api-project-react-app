@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Button from './components/Button'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
 
 export default function EditPetPage() {
     const speciesArr = ['cat', 'dog', 'rabbit', 'parrot', 'other']
@@ -66,10 +68,10 @@ export default function EditPetPage() {
 
 
   return (
-    <div>
-        <div>
+    <PageWrapper>
+        <Container>
             {pet && !petEdited && (
-                <form onSubmit={editedPetHandler}>
+                <form className='form' onSubmit={editedPetHandler}>
                     <div className='form-control'>
                         <label htmlFor='name'>Name:</label>
                         <input type='text' name='name' value={formData.name} onChange={formInputHandler}></input>
@@ -77,12 +79,12 @@ export default function EditPetPage() {
                     <div className='form-control'>
                         <label htmlFor='species'>Species:</label>
                         <select name='species' onChange={formInputHandler} defaultValue={pet.species}>
-                            {speciesArr.map((species, index) => <option key={index} value={species}>{species}</option>)}
+                            {speciesArr.map((species, index) => <option key={index} value={species}>{species[0].toUpperCase() + species.slice(1)}</option>)}
                         </select>
                     </div>
                     <div className='form-control'>
                         <label htmlFor='age'>Age:</label>
-                        <input type='number' name='age' value={formData.age} onChange={formInputHandler}></input>
+                        <input type='number' name='age' min='0' max='25' value={formData.age} onChange={formInputHandler}></input>
                     </div>
                     <div className='form-control'>
                         <label htmlFor='image'>Image url:</label>
@@ -94,18 +96,18 @@ export default function EditPetPage() {
                             {users.map((owner, index) => <option key={index} value={owner.id}>{owner.name}</option>)}
                         </select>
                     </div>
-                    <input type='submit' value='Edit pet'></input>
+                    <input className='button' type='submit' value='Edit pet'></input>
                 </form>
             )}
             {petEdited ? (
                 <>
-                    <h2>New pet ({formData.name}) was edited!</h2>
-                    <Link to={'/pets'}>Go to all pets</Link>
+                    <h1>New pet ({formData.name}) was edited!</h1>
+                    <Link className='link' to={'/pets'}>Go to all pets</Link>
                 </>
             ) : (
                 <p>{errorMessages}</p>
             )}
-        </div>
-    </div>
+        </Container>
+    </PageWrapper>
   )
 }

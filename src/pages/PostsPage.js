@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Container from './components/Container'
+import PageWrapper from './components/PageWrapper'
+import './styles/PostsPage.scss'
 
 export default function PostsPage() {
 
@@ -16,21 +19,24 @@ export default function PostsPage() {
 
 
     return (
-        <div>
-            <Link to='/posts/new'>Create new post</Link>
-            {posts && (
-                <>
-                    {posts.map((post, index) => (
-                        <div className='post-wrapper' key={index}>
-                            <Link to={'/posts/' + post.id}>
-                                <h2 >{post.title}</h2>
-                                <h3>Author: {post.user.name}</h3>
-                                <p>{post.body.slice(0, 150) + '......'}</p>
-                            </Link>
-                        </div>
-                    ))}
-                </>
-            )}
-        </div>
+        <PageWrapper>
+            <Container>
+                <h1>Posts page</h1>
+                <Link className='link' to='/posts/new'>Create new post</Link>
+                {posts && (
+                    <>
+                        {posts.map((post, index) => (
+                            <div className='post-wrapper' key={index}>
+                                <Link to={'/posts/' + post.id}>
+                                    <h2 className='post-title'>{post.title}</h2>
+                                    <h3 className='post-author'>Author: {post.user.name}</h3>
+                                    <p className='post-body'>{post.body.slice(0, 150) + '......'}</p>
+                                </Link>
+                            </div>
+                        ))}
+                    </>
+                )}
+            </Container>
+        </PageWrapper>
     )
 }

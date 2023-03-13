@@ -1,56 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import Button from './components/Button'
 import './UsersPage.css'
 
 export default function UsersPage() {
     const [users, setUsers] = useState([])
+    const [userWasDeleted, setUserWasDeleted] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:3000/users/`)
             .then(res => res.json())
             .then(usersData => {
-                console.log(usersData)
                 setUsers(usersData)
             })
     }, [])
 
-
-    const deleteUserHandler = () => {
-        fetch(`http://localhost:3000/users/13`, {
+    const deleteUserHandler = (userId) => {
+        fetch(`http://localhost:3000/users/${userId}`, {
             method: 'DELETE',
         });
+        
+        setUserWasDeleted(true)
     }
 
-    const partUpdateHandler = () => {
-        fetch(`http://localhost:3000/users/12`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                name: 'bbb',
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
-    }
 
-    const wholeUpdateHandler = () => {
-        fetch(`http://localhost:3000/users/12`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                id: 12,
-                name: 'naujas vardas',
-                username: 'slapyvardis',
-                email: 'mail@mail.mail',
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
-    }
+    useEffect(() => {
+        fetch(`http://localhost:3000/users/`)
+            .then(res => res.json())
+            .then(usersData => {
+                setUsers(usersData)
+            })
+
+            setUserWasDeleted(false)
+    }, [userWasDeleted])
+
+
 
   return (
     <div>
@@ -60,16 +44,20 @@ export default function UsersPage() {
         {/* <button onClick={partUpdateHandler}>Edit user (part)</button>
         <button onClick={wholeUpdateHandler}>Whole user update</button>
          */}
-        <ul>
-            {users.map((user, index) => (
-                <li key={index}>
-                    <Link to={'/users/' + user.id}>
-                        {user.name}
-                    </Link>
-                    <button onClick={deleteUserHandler}>Delete user</button>
-                </li>
-            ))}
-        </ul>
+         {users && users.length > 0 ? (
+            <ul>
+                {users.map((user, index) => (
+                    <li key={index}>
+                        <Link to={'/users/' + user.id}>
+                            {user.name}
+                        </Link>
+                        <Button buttonClass='delete-button' handler={() => deleteUserHandler(user.id)} buttonText='Delete user'/>
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <p>No users yet...</p>
+        )}
     </div>
   )
 }

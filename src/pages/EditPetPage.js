@@ -13,8 +13,17 @@ export default function EditPetPage() {
     const [petEdited, setPetEdited] = useState(false)
     const [errorMessages, setErrorMessages] = useState([])
 
+    
     useEffect(() => {
-        fetch(`http://localhost:3000/pets/${petId}?_expand=user`)
+        fetch(`http://localhost:3000/users/`)
+        .then(res => res.json())
+        .then(usersData => {
+            setUsers(usersData)
+        });
+    }, [])
+    
+    useEffect(() => {
+        fetch(`http://localhost:3000/pets/${petId}`)
             .then(res => res.json())
             .then(petData => {
                 console.log(petData)
@@ -23,21 +32,14 @@ export default function EditPetPage() {
             })
     }, [])
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/users/`)
-            .then(res => res.json())
-            .then(usersData => {
-                setUsers(usersData)
-            });
-    }, [])
-
-
 
 
     const formInputHandler = (event) => {
         setFormData(prevState => {
             const newData = {...prevState}
             console.log(newData)
+            console.log(newData.species)
+
             newData[event.target.name] = event.target.value
             return newData
         })
@@ -74,7 +76,7 @@ export default function EditPetPage() {
                     </div>
                     <div className='form-control'>
                         <label htmlFor='species'>Species:</label>
-                        <select name='species' onChange={formInputHandler}>
+                        <select name='species' onChange={formInputHandler} value={pet.species}>
                             {speciesArr.map((species, index) => <option key={index} value={species}>{species}</option>)}
                         </select>
                     </div>
@@ -88,7 +90,7 @@ export default function EditPetPage() {
                     </div>
                     <div className='form-control'>
                         <label htmlFor='userId'>Owner name:</label>
-                        <select name='userId' onChange={formInputHandler}>
+                        <select name='userId' onChange={formInputHandler} value={pet.userId}>
                             {users.map((owner, index) => <option key={index} value={owner.id}>{owner.name}</option>)}
                         </select>
                     </div>

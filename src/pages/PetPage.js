@@ -16,7 +16,6 @@ export default function PetPage() {
         fetch(`http://localhost:3000/pets/${petId}?_expand=user`)
         .then(res => res.json())
         .then(petData => {
-            console.log(petData)
             setPet(petData)
         })
     }, [])

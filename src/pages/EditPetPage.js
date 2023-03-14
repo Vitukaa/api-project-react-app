@@ -28,7 +28,6 @@ export default function EditPetPage() {
         fetch(`http://localhost:3000/pets/${petId}`)
             .then(res => res.json())
             .then(petData => {
-                console.log(petData)
                 setPet(petData)
                 setFormData(petData)
             })

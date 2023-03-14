@@ -128,11 +128,11 @@ export default function EditUserPage() {
                         <input type='text' name='website' value={formData.website} onChange={formInputHandler}></input>
                     </div>
                     <div className='form-control'>
-                        <label htmlFor='company'>Company:</label>
-                        <input type='text' name='company' value={formData.company.name} onChange={(event) => formInputHandler( event, 'company')}></input>
+                        <label htmlFor='name'>Company:</label>
+                        <input type='text' name='name' value={formData.company.name} onChange={(event) => formInputHandler( event, 'company')}></input>
                     </div>
                         
-                    <input className='button' className='button' type='submit' value='Edit user'></input>
+                    <input className='button' type='submit' value='Edit user'></input>
                 </form>
             )}
 

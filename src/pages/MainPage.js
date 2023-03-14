@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "./components/Container";
@@ -9,11 +10,8 @@ export default function MainPage() {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/users/?_embed=pets`)
-            .then(res => res.json())
-            .then(usersData => {
-                setUsers(usersData)
-            })
+        axios.get(`http://localhost:3000/users/?_embed=pets`)
+            .then(res => setUsers(res.data))
     }, [])
 
 

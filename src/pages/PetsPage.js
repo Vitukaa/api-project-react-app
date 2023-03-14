@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Container from './components/Container'
@@ -8,11 +9,8 @@ export default function PetsPage() {
     const [pets, setPets] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/pets?_expand=user`)
-            .then(res => res.json())
-            .then(petsData => {
-                setPets(petsData)
-            })
+        axios.get(`http://localhost:3000/pets?_expand=user`)
+            .then(res => setPets(res.data))
     }, [])
 
 

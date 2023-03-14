@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from './components/Button'
@@ -23,11 +24,8 @@ export default function CreatePetPage() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/users/`)
-            .then(res => res.json())
-            .then(usersData => {
-                setUsers(usersData)
-            });
+        axios.get(`http://localhost:3000/users/`)
+            .then(res => setUsers(res.data));
     }, [])
 
 

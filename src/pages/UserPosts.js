@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Container from './components/Container'
@@ -10,11 +11,8 @@ export default function UserPosts() {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${userId}?_embed=posts`)
-        .then(res => res.json())
-        .then(userData => {
-            setUser(userData)
-        })
+        axios.get(`http://localhost:3000/users/${userId}?_embed=posts`)
+        .then(res => setUser(res.data))
     }, [])
 
     

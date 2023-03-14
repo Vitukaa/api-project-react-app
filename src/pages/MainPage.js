@@ -23,7 +23,7 @@ export default function MainPage() {
       <PageWrapper>
         <Container>
             <h1 className='main-title'>Welcome to pet lovers blog!</h1>
-            <h2>Top writers:</h2>
+            <h2 className='main-subtitle'>Top writers:</h2>
             <div className='top-wrapper'>
             {users.slice(0, 6).map((user, index) => (
                 <div className='user-card' key={index}>
@@ -34,7 +34,7 @@ export default function MainPage() {
                     <div className='pets-wrapper' key={index}>
                         {user.pets && user.pets.length > 0 && (
                             user.pets.map((pet, index) => (
-                                <Link to={'/pets/' + pet.id}>
+                                <Link to={'/pets/' + pet.id} key={index}>
                                     <div className='pet-wrapper' key={index}>
                                         <h3>{pet.name}</h3>
                                         <img src={pet.image}></img>

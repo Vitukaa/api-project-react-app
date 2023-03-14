@@ -103,7 +103,7 @@ export default function PostPage() {
                             <Button buttonClass='edit-button' handler={redirectToEditPostPageHandler} buttonText='Edit post'></Button>
                             <div className='main-post'>
                                 <h1 className='title'>{post.title}</h1>
-                                <p>{post.body}</p>
+                                <p className='post-body'>{post.body}</p>
                                 <h3 className='subtitle'>Author: {post.user.name}</h3>
 
                                 <Link className='link' to={`/users/${post.userId}/posts`}>Visit all {post.user.name} posts</Link>

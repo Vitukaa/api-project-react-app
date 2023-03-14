@@ -1,8 +1,12 @@
 .main-title {
     text-align: center;
-    margin: 100px 0;
+    margin: 150px 0;
+    font-size: 50px;
 }
 
+.main-subtitle {
+    font-size: 36px;
+}
 .top-wrapper {
     margin: 50px 0;
     display: flex;
@@ -13,6 +17,9 @@
         width: calc((100% - 100px) /3);
         border: dashed 2px;
         padding: 20px;
+        border-width: 3px;
+        border-color: rgb(94, 43, 187);
+        background-color: rgb(216, 229, 253);
 
         a {
             text-decoration: none;

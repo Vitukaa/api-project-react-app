@@ -12,7 +12,6 @@ export default function MainPage() {
         fetch(`http://localhost:3000/users/?_embed=pets`)
             .then(res => res.json())
             .then(usersData => {
-                console.log(usersData)
                 setUsers(usersData)
             })
     }, [])

@@ -9,6 +9,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @media screen and (max-width: 750px) {
+            width: 100%;
+        }
         
         .image-link {
             flex-direction: column;

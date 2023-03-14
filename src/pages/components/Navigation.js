@@ -17,6 +17,7 @@ export default function Navigation() {
                         <p className='site-title'>Paw lovers</p>
                     </div>
                     <ul className='menu-list'>
+                        <li className='menu-icon'><img className='menu-list-icon' src='https://img.icons8.com/dusk/256/top-menu.png'></img></li>
                         <li className='menu-item'>
                             <NavLink className='menu-link' to='/' element={<JsonApi />}>Main page</NavLink>
                         </li>

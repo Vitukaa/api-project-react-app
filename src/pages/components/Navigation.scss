@@ -1,11 +1,3 @@
-// *,
-// *::before,
-// *::after {
-//   box-sizing: border-box;
-//   margin: 0;
-//   padding: 0;
-// }
-
 .header {
     background: linear-gradient(90deg, rgb(210, 212, 244) 0%, rgb(174, 211, 255) 100%);
     box-shadow: inset 0px 0px 0px 3px  rgba(145, 86, 221, 0.2);
@@ -13,6 +5,15 @@
     .main-header {
         display: grid;
         grid-template: 90px / 1fr 2fr;
+
+        @media screen and (max-width: 900px) {
+            grid-template: 90px / 1fr 1.5fr;
+        }
+
+        @media screen and (max-width: 750px) {
+            grid-template: 90px / 2fr 0.8fr;
+        }
+
 
         .logo-wrapper {
             display: flex;
@@ -40,14 +41,47 @@
             list-style-type: none;
             justify-content: center;
             align-items: center;
-    
+
+            @media screen and (max-width: 1300px) {
+                gap: 30px;
+            }
+
+            @media screen and (max-width: 900px) {
+                gap: 10px;
+            }
+
+            @media screen and (max-width: 750px) {
+                justify-content: flex-end;
+            }
+            
+            .menu-icon {
+                display: none;
+
+                @media screen and (max-width: 750px) {
+                    display: block;
+                }
+
+                .menu-list-icon {
+                    width: 55px;
+                }
+            }
+
             .menu-item {
     
+                @media screen and (max-width: 750px) {
+                    display: none;
+                }
+
+
                 .menu-link {
                     font-size: 20px;
                     text-decoration: none;
                     padding: 20px;
                     color:black;
+
+                    @media screen and (max-width: 900px) {
+                        font-size: 16px;
+                    }
     
                     &:hover{
                         background-color: rgba(145, 86, 221, 0.5);

@@ -17,6 +17,7 @@ export default function UserPage() {
         fetch(`http://localhost:3000/users/${userId}`)
             .then(res => res.json())
             .then(userData => {
+                console.log(userData.company.name)
                 setUser(userData)
             })
     }, [])
@@ -58,8 +59,8 @@ export default function UserPage() {
 
                         )}
                     </ul>
-                    {user.company && user.company.length > 0 &&
-                        <h4>Working at: {user.company.name}</h4>
+                    {user.company && user.company.name.length > 0 &&
+                        <h4 className='additional-info-title'>Working at: {user.company.name}</h4>
                     }
                     {user.website && (
                         <>

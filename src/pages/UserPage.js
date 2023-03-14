@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Button from './components/Button'
@@ -14,11 +15,8 @@ export default function UserPage() {
     
 
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${userId}`)
-            .then(res => res.json())
-            .then(userData => {
-                setUser(userData)
-            })
+        axios.get(`http://localhost:3000/users/${userId}`)
+            .then(res => setUser(res.data))
     }, [])
 
 

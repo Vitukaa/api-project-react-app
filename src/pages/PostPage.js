@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Button from './components/Button'
@@ -22,11 +23,8 @@ export default function PostPage() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${postId}?_expand=user&_embed=comments`)
-        .then(res => res.json())
-        .then(postData => {
-            setPost(postData)
-        })
+        axios.get(`http://localhost:3000/posts/${postId}?_expand=user&_embed=comments`)
+        .then(res => setPost(res.data))
     }, [])
 
 
@@ -54,11 +52,8 @@ export default function PostPage() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${postId}?_expand=user&_embed=comments`)
-        .then(res => res.json())
-        .then(postData => {
-            setPost(postData)
-        })
+        axios.get(`http://localhost:3000/posts/${postId}?_expand=user&_embed=comments`)
+        .then(res => setPost(res.data))
 
         setCommentDeleted(false)
     }, [commentDeleted])

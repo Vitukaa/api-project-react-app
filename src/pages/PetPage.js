@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Button from './components/Button'
@@ -13,11 +14,8 @@ export default function PetPage() {
     const [isDeleted, setIsDeleted] = useState(false)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/pets/${petId}?_expand=user`)
-        .then(res => res.json())
-        .then(petData => {
-            setPet(petData)
-        })
+        axios.get(`http://localhost:3000/pets/${petId}?_expand=user`)
+        .then(res => setPet(res.data))
     }, [])
 
 

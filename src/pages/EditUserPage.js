@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Container from './components/Container'
@@ -13,11 +14,10 @@ export default function EditUserPage() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/users/${userId}`)
-            .then(res => res.json())
-            .then(userData => {
-                setUser(userData)
-                setFormData(userData)
+        axios.get(`http://localhost:3000/users/${userId}`)
+            .then(res => {
+                setUser(res.data)
+                setFormData(res.data)
             })
     }, [])
 

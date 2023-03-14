@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Button from './components/Button'
@@ -17,19 +18,15 @@ export default function EditPetPage() {
 
     
     useEffect(() => {
-        fetch(`http://localhost:3000/users/`)
-        .then(res => res.json())
-        .then(usersData => {
-            setUsers(usersData)
-        });
+        axios.get(`http://localhost:3000/users/`)
+        .then(res => setUsers(res.data));
     }, [])
     
     useEffect(() => {
-        fetch(`http://localhost:3000/pets/${petId}`)
-            .then(res => res.json())
-            .then(petData => {
-                setPet(petData)
-                setFormData(petData)
+        axios.get(`http://localhost:3000/pets/${petId}`)
+            .then(res => {
+                setPet(res.data)
+                setFormData(res.data)
             })
     }, [])
 

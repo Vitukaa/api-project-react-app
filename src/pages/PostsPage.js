@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Container from './components/Container'
@@ -9,11 +10,8 @@ export default function PostsPage() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:3000/posts?_expand=user`)
-        .then(res => res.json())
-        .then(postsData => {
-            setPosts(postsData)
-        })
+        axios.get(`http://localhost:3000/posts?_expand=user`)
+        .then(res => setPosts(res.data))
     }, [])
 
 

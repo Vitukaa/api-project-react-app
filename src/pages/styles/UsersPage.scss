@@ -10,14 +10,19 @@
         &::before {
             content: "";
             background-image: url('https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png');
-           background-repeat: no-repeat;
-           background-size: contain;
-           padding: 20px 20px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding: 20px 20px;
         }
 
         a {
             font-size: 24px;
             text-decoration: none;
+
+            @media screen and (max-width: 750px) {
+                font-size: 18px;
+            }
+
         }
     }
 }

@@ -28,7 +28,6 @@ export default function EditPetPage() {
         fetch(`http://localhost:3000/pets/${petId}`)
             .then(res => res.json())
             .then(petData => {
-                console.log(petData)
                 setPet(petData)
                 setFormData(petData)
             })
@@ -39,10 +38,11 @@ export default function EditPetPage() {
     const formInputHandler = (event) => {
         setFormData(prevState => {
             const newData = {...prevState}
-            console.log(newData)
-            console.log(newData.species)
-
-            newData[event.target.name] = event.target.value
+            if (event.target.name === 'userId') {
+                newData[event.target.name] = Number(event.target.value)
+            } else {
+                newData[event.target.name] = event.target.value
+            }
             return newData
         })
     }

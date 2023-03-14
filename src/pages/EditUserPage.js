@@ -18,7 +18,6 @@ export default function EditUserPage() {
             .then(userData => {
                 setUser(userData)
                 setFormData(userData)
-                console.log(user)
             })
     }, [])
 

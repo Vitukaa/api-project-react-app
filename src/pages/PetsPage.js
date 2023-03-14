@@ -15,7 +15,6 @@ export default function PetsPage() {
             })
     }, [])
 
-    console.log(pets)
 
     return (
         <PageWrapper>

@@ -1,0 +1,12 @@
+ul {
+    
+    &.posts-wrapper {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: capitalize;
+
+        li.post-wrapper {
+            list-style-type: none;
+        }
+    }
+}

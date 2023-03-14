@@ -34,8 +34,11 @@ export default function CreatePetPage() {
     const formInputHandler = (event) => {
         setFormData(prevState => {
             const newData = {...prevState}
-            console.log(newData)
-            newData[event.target.name] = event.target.value
+            if (event.target.name === 'userId') {
+                newData[event.target.name] = Number(event.target.value)
+            } else {
+                newData[event.target.name] = event.target.value
+            }
             return newData
         })
     }

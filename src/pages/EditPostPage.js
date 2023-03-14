@@ -26,7 +26,6 @@ export default function EditPostPage() {
         fetch(`http://localhost:3000/posts/${postId}`)
             .then(res => res.json())
             .then(postData => {
-                console.log(postData)
                 setPost(postData)
                 setFormData(postData)
             })

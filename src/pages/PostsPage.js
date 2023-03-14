@@ -22,20 +22,22 @@ export default function PostsPage() {
         <PageWrapper>
             <Container>
                 <h1>Posts page</h1>
-                <Link className='link' to='/posts/new'>Create new post</Link>
-                {posts && (
-                    <>
-                        {posts.map((post, index) => (
-                            <div className='post-wrapper' key={index}>
-                                <Link to={'/posts/' + post.id}>
-                                    <h2 className='post-title'>{post.title}</h2>
-                                    <h3 className='post-author'>Author: {post.user.name}</h3>
-                                    <p className='post-body'>{post.body.slice(0, 150) + '......'}</p>
-                                </Link>
-                            </div>
-                        ))}
-                    </>
-                )}
+                <div className='posts-wrapper'>
+                    <Link className='link' to='/posts/new'>Create new post</Link>
+                    {posts && (
+                        <>
+                            {posts.map((post, index) => (
+                                <div className='post-wrapper' key={index}>
+                                    <Link to={'/posts/' + post.id}>
+                                        <h2 className='post-title'>{post.title}</h2>
+                                        <h3 className='post-author'>Author: {post.user.name}</h3>
+                                        <p className='post-body'>{post.body.slice(0, 150) + '......'}</p>
+                                    </Link>
+                                </div>
+                            ))}
+                        </>
+                    )}
+                </div>
             </Container>
         </PageWrapper>
     )

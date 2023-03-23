@@ -17,13 +17,13 @@ export default function UserPage() {
     useEffect(() => {
         axios.get(`http://localhost:3000/users/${userId}`)
             .then(res => setUser(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 
     const deleteUserHandler = () => {
-        fetch(`http://localhost:3000/users/${userId}`, {
-            method: 'DELETE',
-        });
+        axios.delete(`http://localhost:3000/users/${userId}`)
+        .catch(error => console.log(error))
 
         setIsDeleted(true)
     }

@@ -16,13 +16,13 @@ export default function PetPage() {
     useEffect(() => {
         axios.get(`http://localhost:3000/pets/${petId}?_expand=user`)
         .then(res => setPet(res.data))
+        .catch(error => console.log(error))
     }, [])
 
 
     const deletePetHandler = () => {
-        fetch(`http://localhost:3000/pets/${petId}`, {
-            method: 'DELETE',
-        });
+        axios.delete(`http://localhost:3000/pets/${petId}`)
+            .catch(error => console.log(error))
 
         setIsDeleted(true)
     }

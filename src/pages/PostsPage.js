@@ -11,7 +11,8 @@ export default function PostsPage() {
 
     useEffect(() => {
         axios.get(`http://localhost:3000/posts?_expand=user`)
-        .then(res => setPosts(res.data))
+            .then(res => setPosts(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 
@@ -29,7 +30,11 @@ export default function PostsPage() {
                                     <Link to={'/posts/' + post.id}>
                                         <h2 className='post-title'>{post.title}</h2>
                                         <h3 className='post-author'>Author: {post.user.name}</h3>
-                                        <p className='post-body'>{post.body.slice(0, 150) + '......'}</p>
+                                        <p className='post-body'>{post.body.length > 150 ? (
+                                            post.body.slice(0, 150) + '......'
+                                        ) : (
+                                            post.body
+                                        )}</p>
                                     </Link>
                                 </div>
                             ))}

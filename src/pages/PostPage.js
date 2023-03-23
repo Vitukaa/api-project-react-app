@@ -24,14 +24,14 @@ export default function PostPage() {
 
     useEffect(() => {
         axios.get(`http://localhost:3000/posts/${postId}?_expand=user&_embed=comments`)
-        .then(res => setPost(res.data))
+            .then(res => setPost(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 
     const deletePostHandler = () => {
-        fetch(`http://localhost:3000/posts/${postId}`, {
-            method: 'DELETE',
-        })
+        axios.delete(`http://localhost:3000/posts/${postId}`)
+            .catch(error => console.log(error))
 
         setPostDeleted(true)
     }
@@ -43,9 +43,8 @@ export default function PostPage() {
 
 
     const deleteCommentHandler = (id) => {
-        fetch(`http://localhost:3000/comments/${id}`, {
-            method: 'DELETE',
-        })
+        axios.delete(`http://localhost:3000/comments/${id}`)
+            .catch(error => console.log(error))
 
         setCommentDeleted(true)
     }
@@ -53,7 +52,8 @@ export default function PostPage() {
 
     useEffect(() => {
         axios.get(`http://localhost:3000/posts/${postId}?_expand=user&_embed=comments`)
-        .then(res => setPost(res.data))
+            .then(res => setPost(res.data))
+            .catch(error => console.log(error))
 
         setCommentDeleted(false)
     }, [commentDeleted])
@@ -74,17 +74,16 @@ export default function PostPage() {
 
 
     const submitCommentHandler = () => {
-        fetch(`http://localhost:3000/comments/`, {
-            method: 'POST',
-            body: JSON.stringify(
-                {...formData}
-            ),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+        axios.post(
+            `http://localhost:3000/comments/`,
+            {...formData},
+            {
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            }
+        )
+            .catch(error => console.log(error))
     }
 
 

@@ -11,6 +11,7 @@ export default function PetsPage() {
     useEffect(() => {
         axios.get(`http://localhost:3000/pets?_expand=user`)
             .then(res => setPets(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 

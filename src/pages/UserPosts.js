@@ -13,6 +13,7 @@ export default function UserPosts() {
     useEffect(() => {
         axios.get(`http://localhost:3000/users/${userId}?_embed=posts`)
         .then(res => setUser(res.data))
+        .catch(error => console.log(error))
     }, [])
 
     

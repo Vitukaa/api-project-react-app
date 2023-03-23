@@ -12,6 +12,7 @@ export default function MainPage() {
     useEffect(() => {
         axios.get(`http://localhost:3000/users/?_embed=pets`)
             .then(res => setUsers(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 

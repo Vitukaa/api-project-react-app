@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Container from './components/Container'
@@ -79,17 +80,17 @@ export default function CreateUserPage() {
         return
         }
 
-        fetch(`http://localhost:3000/users/`, {
-        method: 'POST',
-        body: JSON.stringify(
-            {...formData}
-            ),
-            headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+        axios.post(
+            `http://localhost:3000/users/`,
+            {...formData},
+            {
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    },
+            }
+        )
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
 
         setUserCreated(true)
     }

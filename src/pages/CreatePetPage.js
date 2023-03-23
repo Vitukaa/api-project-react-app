@@ -25,7 +25,8 @@ export default function CreatePetPage() {
 
     useEffect(() => {
         axios.get(`http://localhost:3000/users/`)
-            .then(res => setUsers(res.data));
+            .then(res => setUsers(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 
@@ -77,17 +78,17 @@ export default function CreatePetPage() {
             return
         }
 
-        fetch(`http://localhost:3000/pets/`, {
-        method: 'POST',
-        body: JSON.stringify(
-            {...formData}
-            ),
-            headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+        axios.post(
+            `http://localhost:3000/pets/`,
+            {...formData},
+            {
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }
+        )
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
 
         setPetCreated(true)
     }

@@ -19,7 +19,8 @@ export default function EditPetPage() {
     
     useEffect(() => {
         axios.get(`http://localhost:3000/users/`)
-        .then(res => setUsers(res.data));
+            .then(res => setUsers(res.data))
+            .catch(error => console.log(error))
     }, [])
     
     useEffect(() => {
@@ -28,9 +29,35 @@ export default function EditPetPage() {
                 setPet(res.data)
                 setFormData(res.data)
             })
+            .catch(error => console.log(error))
     }, [])
 
+    const validateForm = () => {
+        let messages = []
 
+        if(!formData.name) {
+            messages.push('Name is required')
+        }
+        if(!formData.species) {
+            messages.push('Species is required')
+        }
+        if(!formData.age) {
+            messages.push('Age is required')
+        }
+        if(!formData.image) {
+            messages.push('Image url is required')
+        }
+        if(!formData.userId) {
+            messages.push('Owner is required')
+        }
+
+        if (messages.length === 0) {
+            return true
+        } else {
+            setErrorMessages(messages.reduce((str, current) => str + '; ' + current))
+            return false
+        }
+    }
 
     const formInputHandler = (event) => {
         setFormData(prevState => {
@@ -48,19 +75,23 @@ export default function EditPetPage() {
     const editedPetHandler = (event) => {
         event.preventDefault()
 
-        fetch(`http://localhost:3000/pets/${petId}`, {
-            method: 'PUT',
-            body: JSON.stringify(
-                {...formData}
-            ),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+        if (!validateForm()) {
+            return
+        }
 
-            setPetEdited(true)
+        axios.put(
+            `http://localhost:3000/pets/${petId}`,
+            {...formData},
+            {
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }
+        )
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
+
+        setPetEdited(true)
     }
 
 

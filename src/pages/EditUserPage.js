@@ -19,6 +19,7 @@ export default function EditUserPage() {
                 setUser(res.data)
                 setFormData(res.data)
             })
+            .catch(error => console.log(error))
     }, [])
 
 
@@ -72,17 +73,17 @@ export default function EditUserPage() {
         return
         }
 
-        fetch(`http://localhost:3000/users/${userId}`, {
-            method: 'PUT',
-            body: JSON.stringify(
-                {...formData}
-            ),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+        axios.put(
+            `http://localhost:3000/users/${userId}`,
+            {...formData},
+            {
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }
+        )
+            .then(res => res.json())
+            .catch(error => console.log(error))
 
         setUserEdited(true)
     }

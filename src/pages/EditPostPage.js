@@ -16,7 +16,8 @@ export default function EditPostPage() {
 
     useEffect(() => {
         axios.get(`http://localhost:3000/users/`)
-        .then(res => setUsers(res.data));
+            .then(res => setUsers(res.data))
+            .catch(error => console.log(error))
     }, [])
 
 
@@ -26,6 +27,7 @@ export default function EditPostPage() {
                 setPost(res.data)
                 setFormData(res.data)
             })
+            .catch(error => console.log(error))
     }, [])
 
 
@@ -63,6 +65,10 @@ export default function EditPostPage() {
     const editedPostHandler = (event) => {
         event.preventDefault()
 
+        if (!validateForm()) {
+            return
+        }
+
         fetch(`http://localhost:3000/posts/${postId}`, {
             method: 'PUT',
             body: JSON.stringify(
@@ -87,7 +93,7 @@ export default function EditPostPage() {
                 <form className='form' onSubmit={editedPostHandler}>
                     <div className='form-control'>
                         <label htmlFor='title'>*Title:</label>
-                        <input type='text' name='title' value={formData.title} onChange={formInputHandler}></input>
+                        <input type='text' name='title' defaultValue={formData.title} onChange={formInputHandler}></input>
                     </div>
                     <div className='form-control'>
                         <label htmlFor='body'>*Body:</label>

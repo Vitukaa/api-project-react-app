@@ -12,7 +12,7 @@ export default function CreatePetPage() {
     const defaultInputsValues = {
         name: '',
         species: 'cat',
-        age: 0,
+        age: '0',
         image: '',
         userId: 1,
     }

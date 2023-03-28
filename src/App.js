@@ -1,4 +1,5 @@
 import { BrowserRouter, Link, NavLink, Route, Router, Routes } from 'react-router-dom';
+import Footer from './pages/components/Footer';
 import Navigation from './pages/components/Navigation';
 import CreatePetPage from './pages/CreatePetPage';
 import CreatePostPage from './pages/CreatePostPage';
@@ -39,6 +40,7 @@ function App() {
           <Route path='/pets/:petId' element={<PetPage/>}></Route>
           <Route path='/pets/:petId/edit' element={<EditPetPage />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
